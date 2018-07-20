@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import {firebaseApp} from '../firebase'
@@ -11,11 +10,11 @@ class SignUp extends Component{
       message: ''
     }
   }
-  signUp(){
+  signUp = () => {
     console.log('this.state', this.state)
     const {email, password} = this.state
     firebaseApp.auth().createUserWithEmailAndPassword(email, password)
-      .catch(err => this.setState({error: err}))
+      .catch(err => this.setState({error:{message: err}}))
   }
   render(){
     return(
